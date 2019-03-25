@@ -1,0 +1,544 @@
+/*********************************************
+ *	General design
+ *********************************************/
+
+body { 
+/*
+	background			: url(../img/OpenZFS.png) no-repeat 0 0 #f8f8ff ; 
+*/
+	margin				: 0;
+	font-family			: "Arial",sans-serif;
+}
+
+form {
+	margin				: 0;
+	padding				: 0;
+}
+
+#projectname {
+/* 	background			: url(../img/bandeau.png) no-repeat 0 0 transparent; */
+	background-image	: url(../img/bandeau.png);
+	background-repeat	: no-repeat;
+	display				: block;
+	
+	margin				: 0 0 10px 0;
+	padding				: 5px 150px 5px 5px;
+	width				: 1100px;
+	height				: 22px;
+	line-height			: 22px;
+
+	text-align			: center;
+	font-size 			: 16px;
+	text-align			: right;
+ 	color				: #666666; 
+	text-shadow			: 1px 1px 4px #000;
+ 	border-bottom		: 1px solid blue; 
+	
+}
+
+#footer {
+	width				: 100%;
+	padding-top			: 2px;
+	padding-bottom		: 2px;
+	margin				: 20px 0 1px 0;
+	border-top			: 1px solid #777;
+	border-bottom		: 1px solid #777;
+	text-align			: center;
+	text-decoration		: none;
+	background-color	: #555555;
+	z-index				: 0;
+	vertical-align		: middle;
+
+}
+a:link {
+	text-decoration		: none;
+	color				: gray;
+}
+a:visited {
+	text-decoration		: none;
+	color				: gray;
+}
+a:hover {
+	text-decoration		: underline;
+}
+a:active {
+	text-decoration		: underline;
+}
+
+#footer a:visited {
+	
+}
+
+#footer .morefooter {
+	margin-top			: 2px;
+	color				: #99a;
+	font-size			: 70%;
+	right				: 5px;
+	position			: absolute;
+	opacity				: 0;
+}
+#footer .morefooter:hover {
+	opacity				: 1;
+	cursor				: help;
+}
+
+img {
+	border				: none;
+}
+
+
+/*********************************************
+ *	Content :
+ *********************************************/
+
+#content {
+
+/* 	float				: left; */
+	display				: table;
+	vertical-align		: top;
+
+	padding				: 0px;
+/*
+  	border				: 1px solid red;  
+*/
+	margin-left			: 2%;
+/* 	white-space			: nowrap; */
+	width				: 96%;
+}
+
+#divmap {
+ 	height				: 560px;
+	width				: 572px;
+	display				: table-cell;
+/*  	border				: 1px solid green;  */
+	position			: relative;
+	
+}
+#imgmap {
+ 	height				: 560px;
+	width				: 572px; 
+}
+
+/* timer box */
+#refreshTimerWrapper {
+	position			: fixed;
+	border				: none;
+	top					: 6px;
+	left				: 5px;
+	margin				: 0;
+	padding				: 0;
+}
+
+#refreshTimerWrapper #reloadButton {
+	width: 18px;
+	height: 18px;
+	display: block;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+}
+
+#refreshTimerWrapper #reloadButton.animate {
+	background: url('../img/reload.png') no-repeat;
+}
+
+
+#refreshTimerWrapper #reloadButton.pause {
+	background: url('../img/reload-pause.png') no-repeat;
+}
+
+#refreshTimerWrapper #ttl {
+	width: 16px;
+	background-color: white;
+	height: 2px;
+	margin-left: 1px;
+}
+
+#refreshTimerWrapper #ttl.animate {
+	background-color: #efefef;
+}
+
+#refreshTimerWrapper #ttl.pause {
+	background-color: #aaa;
+}
+
+
+/*********************************************
+ *	Right menu :
+ *********************************************/
+
+#righttab {
+/* 	display				: inline-block; */
+	display				: table-cell;
+	vertical-align		: top;
+	margin				: 5px;
+	padding				: 0;
+	top					: 50px;
+/* 	white-space			: normal; */
+/*  	border				: 1px solid blue;  */
+}
+
+div.date {
+	
+	margin				: 5px 10px;
+	font-weight			: bold;
+	text-align			: center;
+}
+
+
+.menutab div.hr {
+	margin				: 3px 0;
+	height				: 1px;
+	background-color	: gray;
+}
+
+div.outputplug {
+	margin				: 0 0 5px 0;
+	display				: block;
+	background-color	: #ccc;
+	color				: #444;
+	margin				: 0 0 5px 0;
+	padding				: 1px;
+}
+
+/*********************************************
+ *	Views :
+ *********************************************/
+
+.viewOverallStateItem {
+	display				: block;
+	padding				: 2px;
+	vertical-align		: middle;
+}
+
+.viewStateItem {
+	display				: block;
+	margin-top			: 7px;
+	border-top			: 1px solid black;
+	padding				: 2px;
+	vertical-align		: middle;
+}
+
+.viewStateItemACK {
+	font-style			: italic;
+}
+
+.viewStateItem img {
+	vertical-align		: top;
+}
+
+.viewStateCheck {
+	margin-left			: 8px;
+}
+
+.viewStateOk {
+	background-color	: rgb(155,255,155);
+}
+.viewStateWarn {
+	background-color	: rgb(255,220,55);
+}
+.viewStateCrit {
+	background-color	: rgb(255,155,155);
+}
+.viewStateUnkn {
+	background-color	: rgb(255,153,0);
+}
+.viewStatePend {
+	background-color	: rgb(172,172,172);
+}
+
+
+div.statBar {
+	border				: 1px solid black;
+	padding				: 0;
+	width				: 100%;
+	height				: 20px;
+	background-color	: #ACACAC;
+}
+div.statsbox {
+	background-color	: #666666;
+	background			: linear-gradient(170deg,#ffffff 0%, rgb(255, 236, 224) 100%);
+	border				: 1px solid #CCC;
+	margin				: 5px 0 0 0;
+}
+
+#statusBoxId {
+/* 	font-size           : 11px; */
+/*	right				: 0;
+	left				: 0;*/
+	
+	margin				: 5px 0 0 0;
+	padding				: 3px;
+	
+	background-color	: #666666;
+	background			: linear-gradient(170deg, rgb(255, 236, 224) 0%,#ffffff 100%);
+	border				: 1px solid #CCC;
+}
+
+
+
+div.statusbox h2 {
+	padding				: 0px;
+	margin				: 0px;
+	text-align			: center;
+}
+
+/*********************************************
+ *	Other :
+ *********************************************/
+
+h2 {
+	font-size			: 14px;
+	font-weight			: bold;
+	margin				: 0 0 5px 0;
+	padding				: 0;
+}
+p {
+	padding			: 0px;
+	margin			: 0px;	
+}
+
+
+/*********************************************
+ *	Debug :
+ *********************************************/
+
+div.debugdb {
+	position			: relative;
+
+	padding				: 5px ;
+	border				: 2px solid red;
+
+	background-color	: #d9a090;
+	text-align			: left;
+}
+div.debug {
+	margin-top			: 20px;
+}
+span.head {
+	color				: green;
+}
+span.error {
+	color				: red;
+}
+span.warn {
+	color				: #FFA040;
+}
+span.debug {
+	color				: gray;
+}
+
+/*********************************************
+ *	Application selector
+ *********************************************/
+div.appSelect {
+	padding				: 5px;
+	background			: linear-gradient(170deg, rgb(255, 236, 224) 0%,#ffffff 100%);
+	border				: 1px solid #CCC;
+	text-align			: right;
+}
+
+
+select {
+	padding				: 3px;
+	margin				: 0;
+	border-radius		: 4px;
+ 	box-shadow			: 2px 2px 2px #ccc;
+	background			: #e8e0e0;
+	color				: #200;
+	border				: none;
+	outline				: none;
+	min-width			: 200px;
+/*	display				: inline-block;
+	cursor				: pointer;*/
+}
+
+optgroup {
+	color				: #700;
+	padding				: 3px;
+}
+option {
+	color				: #200;
+	padding				: 2px 5px 3px 10px;
+}
+option[selected=selected] {
+	color:#200;
+	background: #fcc;
+}
+
+input[type="submit"] {
+	background			: #e8e0e0;
+	border-radius		: 4px;
+	color				: #200;
+	padding				: 3px;
+	
+}
+
+/* --- Positionnement et dimension du menu --- */
+/*#appSelectMenu {
+	position:absolute;
+	top:50px;
+	left:500px;
+	width:256px;
+	cursor:default;
+}*/
+
+/* --- Définition du css pour positionnement du menu --- */
+.menuHeader {
+	display:table;
+	width:100%;
+}
+.menuHeader span {
+	display:table-cell;
+	padding-left:16px;
+	padding-right:8px;
+}
+#appSelectMenu .menuContent {
+	display:none;
+}
+#appSelectMenu:hover .menuContent {
+	display:block;
+}
+.menuContent {
+	margin-left:32px;
+	margin-right:32px;
+}
+.menuContent span span {
+	padding-left:32px;
+}
+
+
+/* --- Style du menu --- */
+.menuHeader {
+	cursor: pointer;
+	height:28px;
+	line-height:28px;
+/*	background-color:#400;*/
+	color:white;
+	font-size:18px;
+	font-weight:bold;
+	text-transform:uppercase;
+/*	border-bottom-left-radius:16px;
+	border-bottom-right-radius:16px;*/
+}
+.menuContent {
+	background-color:#C98;
+	color:#400;
+	border:1px solid #400;
+	border-top:0px;
+}
+.menuContent span span {
+	display:block;
+	cursor:pointer;
+	opacity : 0.7;
+}
+.menuContent span span:hover {
+	opacity : 1;
+	background-color:#FFECE0;
+}			
+.groupHeader {
+	font-weight:bold;
+	padding-left:16px !important;
+}
+
+
+
+
+/********************************
+* tooltip
+********************************/
+
+/* tooltipwrapper : le texte à tooltip-er */
+.tooltipwrapper {
+	text-decoration-line: underline;
+	text-decoration-style: dashed;
+	text-decoration-color: #3f3f3f;
+}
+.tooltipwrapper:hover {
+	cursor: help;
+}
+
+/* tooltip : la tooltip */
+.tooltipwrapper .tooltip {
+	text-decoration-line: none;
+	color: #333;
+	background-color: #efefef;
+	display: block;
+	margin-bottom: 15px;
+	pointer-events: none;
+	opacity: 0;
+	position: absolute;
+	padding: 7px;
+	border: 2px solid #777;
+	margin-left: -50px; /* attention à la position de la flèche ! */
+	margin-top: 7px;
+	margin-right: 20px;
+	border-radius: 5px;
+	font-size: 85%;
+	box-shadow: 3px 3px 4px #999;
+}
+
+.tooltipwrapper:hover .tooltip {
+	pointer-events: auto;
+	opacity: 1;
+	transition: opacity .25s ease-out;
+}
+
+/* tooltip:after & .tooltip:before : la petite flèche au dessus du tooltip */
+.tooltipwrapper .tooltip:after, .tooltipwrapper .tooltip:before {
+	bottom: 100%;
+	left: 60px; /* left est fortement influencé par l'attribut margin-left de .tooltip */
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.tooltipwrapper .tooltip:after {
+	border-bottom-color: #efefef;
+	border-width: 5px;
+	margin-left: -5px;
+}
+.tooltipwrapper .tooltip:before {
+	border-bottom-color: #777;
+	border-width: 8px; /* ne pas oublier d'ajouter l'épaisseur de la bordure en pixel */
+	margin-left: -8px; /* ne pas oublier d'enlever l'épaisseur de la bordure en pixel */
+}
+
+/* tooltip decoration */
+.tooltipwrapper .state span {
+	font-style: italic;
+	text-decoration: underline;
+	text-decoration-style: dashed;
+	text-decoration-color: #3f3f3f;
+}
+
+.tooltipwrapper .state:before, .tooltipwrapper .state:after {
+    content: '"';
+}
+
+.tooltipwrapper ol,ul {
+	margin: 0;
+	padding: 0;
+}
+.tooltipwrapper li {
+	margin: 0 0 0 25px;
+}
+
+.tooltipwrapper ol li:after {
+	content: ' ;';
+}
+
+.tooltipwrapper ol li:last-child:after {
+	content: '.';
+}
+
+.tooltipwrapper ul li:after {
+	content: ' ;';
+}
+
+.tooltipwrapper ul li:last-child:after {
+	content: '.';
+}

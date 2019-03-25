@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <title>Acamap III</title>
+ <link rel="stylesheet" type="text/css" href="css/default.css" />
+ <link rel="icon" type="image/png" href="img/favicon.png" />
+ <script src="lib/jquery/jquery-3.2.1.min.js"></script>
+<meta http-equiv="pragma" content="no-cache" />
+
+	<script type="text/javascript">
+		
+		/* config vars */
+		var refreshPageInitTimer = 120; /* from config */
+		
+		/* global vars */
+		var ttlInitWidth = 0; /* width of ttl bar, used in ttlAnimation & doc.ready */
+		var ttlPause = 0;
+		
+		/* hide details */
+		function hideStat(id) {
+			document.getElementById("statusBoxId").innerHTML = 'Survolez une académie avec la souris pour obtenir le détail.';
+		}
+		
+		/* start ttl bar animation */
+		function ttlAnimation() {
+			//console.log('set ttl init width');
+			$('#ttl').width(ttlInitWidth);
+			
+			//console.log('refreshPageInitTimer=' + refreshPageInitTimer);
+			$('#ttl').animate({width: '1px'}, refreshPageInitTimer * 1000, function() {
+				location.reload();
+			});
+			
+		}
+		
+		$(document).ready(function() {
+		
+			/* set ttl width when page is ready */
+			//console.log('w=' + $('#ttl').width());
+			ttlInitWidth = $('#ttl').width();
+			
+			/* start timer */
+			ttlAnimation();
+			
+			/* set click event to pause reload timer */
+			$('#reloadButton').click(function(){
+				if (ttlPause == 0) {
+					ttlPause = 1;
+					$('#ttl').stop(); /* pause ttl bar */
+					$('#reloadButton').addClass('pause');
+					$('#ttl').addClass('pause');
+				}
+				else {
+					ttlPause = 0;
+					ttlAnimation();
+					$('#reloadButton').removeClass('pause');
+					$('#ttl').removeClass('pause');
+				}
+			});
+			
+		});
+	</script>
+		
+</head>
+<!-- ========== End of Header ========== -->
+<body class="body">
+<div id="refreshTimerWrapper">
+ <div id="reloadButton" class="animate" title="Mettre en pause le rechargement de la page"></div>
+ <div id="ttl" class="animate"></div>
+</div>
+ <h1 id="projectname">Disponibilité des applications nationales - </h1>
+<div id="content">
+ <div id="divmap">
+  <img id="imgmap" src="index.php?t=img&amp;Fapn=" ismap="ismap" usemap="#map1" alt="Carte de France des académies"/>
+
+ </div>
+<div id="righttab">
+ <div class="date">Dimanche 24 Mars&nbsp;2019&nbsp;&nbsp;&nbsp;19:02:49</div>
+ <form id="status" method="get" action="">
+  <div class="appSelect">
+   <select name="Fapn" id="Fapn" onchange="submit();">
+   </optgroup>
+   </select>
+   <input type="submit" value="Changer"/>
+  </div>
+ </form>
+
+ <div class="statsbox" id="legend">
+ </div>
+ <div id="statusBoxId">Survolez une académie avec la souris pour obtenir le détail.</div>
+ </div>
+ </div>
+
+<!-- ============ Footer =============== -->
+<div id="footer">
+	<a href="https://pole.in.ac-nancy-metz.fr/wiki/ACAMAP">À propos d'Acamap</a>
+	<span class="morefooter">v3.57, PHP : 4,51ms, Mem : 2097,15 ko</span>
+</div>
+<!-- ========== End of Footer ========== -->
+</body>
+</html>
