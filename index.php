@@ -21,6 +21,9 @@
  * 
  * 
  */
+
+ /// \ File index.php, the place where everything starts
+ 
 // Security check :
 if (@ini_get('register_globals')) {
 	die ('FATAL SECURITY ERROR: register_globals is on!');
@@ -28,7 +31,7 @@ if (@ini_get('register_globals')) {
 
 
 define('PROJECT_NAME', 'zfsgui'); /* PROJECT_NAME => used to MVC */
-//~ define('CONFIGFILE', '/etc/acamap3/config.php'); /* CONFIGFILE => path to configfile */
+define('CONFIGFILE', '/home/xavier/Development/acamap3/config.php'); /* CONFIGFILE => path to configfile */
 
 
 // Use PHP5 __autoload() nice feature (automatically load required classes):

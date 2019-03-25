@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * oGui.php
  * 
  * Copyright 2019 Xavier Humbert <xavier@feanor>
@@ -21,6 +21,10 @@
  * 
  * 
  */
+
+/// Class GUI
+/// The main class for this application
+
 class oGui {
 	protected $oDb;
 	protected $oLogger;
@@ -38,7 +42,7 @@ class oGui {
 		$this->oLogger = oLogger::getLogger();
 	
 		$this->oLogger->log1(__FUNCTION__.'()');
-		
+		$this->oPage = new oPageHtml();
 		// Start execution timer :
 		$this->startTime = microtime(true);
 	}
