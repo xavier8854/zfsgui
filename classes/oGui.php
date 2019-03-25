@@ -2,7 +2,7 @@
 /**
  * oGui.php
  * 
- * Copyright 2019 Xavier Humbert <xavier@feanor>
+ * Copyright 2019 Xavier Humbert <xavier@amdh.fr>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
