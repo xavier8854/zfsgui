@@ -1,6 +1,6 @@
 <?php
 /*
- * untitled.php
+ * config.php
  *
  * Copyright 2019 Xavier Humbert <xavier.humbert@ac-nancy-metz.fr>
  *
@@ -22,25 +22,7 @@
  *
  */
 
-session_start();
+$userName = 'xavier';
+$passwordHash = '$2y$10$j/GJ8OozIuQfXUfA3ixWjuV7FSitKA9vOtI7r.6TplRDXmC6.9WWy';
+
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-	<title>untitled</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 1.33" />
-</head>
-
-<body>
-<h2> You're welcome !</h2>
-<?php
-	echo $_SESSION ['user'];
-	echo '<br />';
-	echo $_SESSION ['pwd'];
-?>
-</body>
-
-</html>

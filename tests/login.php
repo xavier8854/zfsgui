@@ -22,12 +22,17 @@
  *
  */
 
+
 session_start();
+
+require_once "config.php";
 
 $userErr = $pwdErr = $rememeberErr = "";
 $user = $pwd = $remember = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+	print "Stored user is $userName";
 	$user = test_input($_POST["user"]);
 	$pwd = test_input($_POST["pwd"]);
 	$remember =  test_input($_POST["remember"]);
@@ -35,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ( !empty($_POST["user"]) && !empty($_POST["pwd"])){
 		if(validPassword($user, $pwd)) {
 			$_SESSION ['user'] = $user;
-			$_SESSION ['pwd'] = $pwd;
 			header("Status: 301 Moved Permanently", false, 301);
 			header('Location: redir.php');
 
@@ -53,7 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 function validPassword($u, $p) {
-	return true; // OH !
+	if ($u != $userName) {
+		print "Bad username $u != $userName";
+		return false;
+	}else if (password_verify ($p, $passwordHash )) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function test_input($data) {
